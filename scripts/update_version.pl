@@ -2,9 +2,9 @@
 use strict;
 use warnings;
 use lib "../lib";
-use WP::Tools;
+use O2G::Tools;
 
-my $d = WP::Tools->database();
+my $d = O2G::Tools->database();
 
 my $modules = $d->select_multiple(
     "SELECT module_id, moddir, version FROM modules"

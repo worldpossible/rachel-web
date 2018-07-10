@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 use lib "../lib";
-use WP::Tools;
+use O2G::Tools;
 use Data::Dumper;
 
 # figure out if it's for real or a dry run
@@ -19,7 +19,7 @@ if (@moddirs) {
 
 my $modroot = "/var/modules";
 
-my $d = WP::Tools->database();
+my $d = O2G::Tools->database();
 
 my $modules = $d->select_multiple(qq(
     SELECT module_id, moddir, title, ksize, lang,

@@ -1,0 +1,15 @@
+</div>
+
+<div class="footer-space"></div>
+<div class="footer">
+    <div class="container">
+    <% if !$is_admin %>
+    <div class="u-pull-right"><a href="/cgi/login.pl<% if $returnUrl %>?returnUrl=<% echo $returnUrl %><% endif %>">Admin Log In</a></div>
+    <% endif %>
+    OER2Go is a World Possible project, 2017<br>
+    <small><a href="http://worldpossible.org/">World Possible</a> is a 501(c)3 nonprofit organization</small>
+    </div>
+</div>
+
+</body>
+</html>

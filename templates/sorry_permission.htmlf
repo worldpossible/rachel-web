@@ -1,0 +1,14 @@
+<h4>Sorry, you do not have permission to access this page.</h4>
+
+<p>If you want to edit the modules, you'll need to ask
+
+<script type="text/javascript"> 
+<!--
+    var name = "jfield";
+    var domain = "worldpossible.org";
+    document.write('<a href=\"mailto:' + name + '@' + domain + '\">');
+    document.write(name + '@' + domain + '<\/a>');
+//-->
+</script>
+
+to set you up with admin permission.</p>

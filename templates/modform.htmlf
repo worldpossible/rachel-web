@@ -1,0 +1,44 @@
+<form method="post">
+
+<% loop "columns" %>
+    <div class="row">
+    <div class="two columns dynlabel"><label for="<% echo $colname %>"><% echo $colname %></label></div>
+    <div class="ten columns">
+    <% if $editable %>
+        <% if $selection %>
+            <select name="<% echo $colname %>" style="width: 60%; height: auto;"<% if $pvalcount %> size="<% echo $pvalcount %>"<% endif %><% if $multiple %> multiple="multiple"<% endif %>>
+            <% loop "pvals" %>
+                <option value="<% echo $opt %>"<% if $sel %> selected="selected"<% endif %>> <% echo $opt %>
+            <% endloop %>
+            </select>
+        <% elsif $textarea %>
+            <textarea name="<% echo $colname %>" style="width: 60%; height: 10rem;"><% echo $colval %></textarea>
+        <% else %>
+            <% if $is_ksize %>
+                <input type="text" name="<% echo $colname %>" value="<% echo $colval %>" id="ksize" style="width: 60%;">
+                <button id="ksize_button">re-calculate</button>
+            <% elsif $is_file_count %>
+                <input type="text" name="<% echo $colname %>" value="<% echo $colval %>" id="file_count" style="width: 60%;">
+                <button id="file_count_button">re-calculate</button>
+            <% else %>
+                <!-- this is the common case -->
+                <input type="text" name="<% echo $colname %>" value="<% echo $colval %>" style="width: 60%;">
+            <% endif %>
+        <% endif %>
+    <% else %>
+        <!-- this is read-only, but we do it as an inputfield so things space consistently -->
+        <input type="text" value="<% echo $colval %>" readonly style="width: 60%; border-color: #eee; color: #ccc;">
+    <% endif %>
+    </div>
+    </div>
+<% endloop %>
+
+<div class="row">
+    <div class="two columns offset-by-two">
+        <input type="submit" name="save" class="button-primary" value="save changes"><br>
+        <a class="button" href="/viewmod/<% echo $moddir %>">cancel</a>
+    </div>
+</div>
+
+</form>
+

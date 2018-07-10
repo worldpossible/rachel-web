@@ -1,0 +1,144 @@
+<script>
+    $(function () {
+
+        //-------------------------------------------
+        // Language Stuff
+        //-------------------------------------------
+
+        // define our languages (should be created by the back end, based
+        // on what's in the DB, really)
+        var langs = {
+            "en" : "English",
+            "es" : "Spanish",
+            "pt" : "Portuguese",
+            "fr" : "French",
+            "hi" : "Hindi",
+            "de" : "German",
+            "ar" : "Arabic",
+            "kn" : "Kannada",
+            "id" : "Indonesian",
+            "multi" : "Multilingual",
+        };
+
+        // build the language select dropdown
+        var langselect = $("#langselect");
+        $.each(langs, function(key, value) {   
+            langselect.append($("<option></option>")
+                .attr("value",key)
+                .text(value)); 
+        });
+
+        // we prefill the dropdown with the preferred language - we only
+        var preflang = (
+            navigator.language || navigator.userLanguage ||
+            navigator.browserLanguage || navigator.systemLanguage || "en"
+        );
+        // support only the first two chars for now (no dialects)
+        preflang = preflang.substr(0,2);
+
+        // select the preferred language
+        langselect.val(preflang);
+
+        // changing the language selection re-runs livesearch
+        langselect.on( "change", function () {
+            $('#livesearch').trigger("input");
+        });
+
+        //-------------------------------------------
+        // Live Search Stuff
+        //-------------------------------------------
+
+        // set up a callback so that when they type something,
+        // the list is filtered - must respect language dropdown, too
+        $('#livesearch').on( "input", function () {
+
+            var lang = langselect.val();
+
+            var count = 0;
+
+            if (! $(this).val().match(/\w/)) {
+                // if the field is blank, show everything that matches the language
+                $(".appbox").each(function(index) {
+                    if (lang == "all" || lang == $(this).find("span").text().substring(0,2)) {
+                        $(this).show();
+                        ++count;
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            } else {
+                // otherwise filter to text matches
+                var parts = $(this).val().split(/\s+/);
+                $(".appbox").each(function(index) {
+                    var appstring = $(this).find("span").text();
+                    for (i = 0; i < parts.length; ++i) {
+                        if (parts[i].length == 0) { continue; }
+                        regex = new RegExp(parts[i], 'i');
+                        if (appstring.match(regex)) {
+                            if (lang == "all" || lang == appstring.substring(0,2)) {
+                                $(this).show();
+                                ++count;
+                            } else {
+                                $(this).hide();
+                                break; // once an app is hidden, skip to next app
+                            }
+                        } else {
+                            $(this).hide();
+                            break; // once an app is hidden, skip to next app
+                        }
+                    }
+                });
+            }
+
+            if (count == 0) {
+                $("#noresults").show();
+            } else {
+                $("#noresults").hide();
+            }
+
+        });
+
+        // trigger the livesearch now - this matters if someone uses the back
+        // button to get here: there might be something in the search field
+        // but the callback doesn't get called
+        $('#livesearch').trigger("input");
+
+        // put the cursor is in the search field
+        $('#livesearch').focus();
+
+    });
+</script>
+
+<div class="row">
+<div class="nine columns">
+    <input id="livesearch" type="text" placeholder="Live Search" style="width: 100%;" value="">
+</div>
+<div class="three columns">
+    <select id="langselect" style="width: 100%;">
+        <option value="all">All</option>
+    </select>
+</div>
+</div>
+
+<!-- result-container's custom sizing allows us to have margins on both sides
+     of each floated appbox but still line up to the left and right sides -->
+<div class="result-container">
+<% loop "modules" %>
+
+    <div class="appbox">
+      <div class="border">
+        <a href="/viewmod/<% echo $moddir %>">
+            <div class="logo" style="background-image: url(/mods/<% echo $moddir %>/<% echo $logofilename %>);"></div>
+            <div class="title" title="<% echo $title %>"><% echo $title %></div>
+            <!--div class="<% echo $star_class %>"></div-->
+            <span style="display: none;"><% echo $search_string %></span>
+        </a>
+      </div>
+    </div>
+
+<% endloop %>
+
+</div>
+
+<h4 id="noresults" style="display: none;">No Matches</h4>
+

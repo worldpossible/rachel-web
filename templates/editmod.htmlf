@@ -1,0 +1,37 @@
+<script>
+    // this is only really needed on the editmod page
+    $(document).ready(function(){
+        $("#ksize_button").click(function(){
+            $.ajax({url: "get_ksize.pl?module_id=<% echo $module_id %>", success: function(result){
+                $("#ksize").val(result);
+            }});
+            return false;
+        });
+        $("#file_count_button").click(function(){
+            $.ajax({url: "get_filecount.pl?module_id=<% echo $module_id %>", success: function(result){
+                $("#file_count").val(result);
+            }});
+            return false;
+        });
+    });
+</script>
+
+<% if $saved %>
+    <div class="row">
+        <div class="ten columns offset-by-two">
+            <div class="button okbox" style="width: 50%;">Saved</div>
+        </div>
+    </div>
+<% endif %>
+    
+<% if $haslogo %>
+    <img src="/mods/<% echo $moddir %>/<% echo $logofilename %>" style="width: 128px; border: 1px solid #d1d1d1; border-radius: 4px; position: absolute; top: 0; right: 0;">
+<% else %>
+    <div style="width: 128px; height: 128px; background: #fcc; color: #966; border: 1px solid #966; border-radius: 4px; position: absolute; top: 0; right: 0; box-sizing: border-box; padding-top: 4.5rem; text-align: center;">Missing Logo</div>
+<% endif %>
+
+<% include "modform.htmlf" %>
+
+<div style="clear: both; height: 20px;"></div>
+<% if !$haszipfile %><p><b style="color: #c33;">MISSING zip file</b></p><% endif %>
+<% if !$hasindexmod %><p><b style="color: #c33;">MISSING rachel-index.php</b></p><% endif %>

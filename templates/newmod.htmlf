@@ -1,0 +1,7 @@
+
+<h4>Add New Module</h4>
+<h6>The first step is to upload your module directory to
+<code>dev.worldpossible.org:/var/modules/</code>
+so it appears in the <b>moddir</b> dropdown.</h6>
+
+<% include "modform.htmlf" %>

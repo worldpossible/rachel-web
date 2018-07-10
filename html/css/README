@@ -1,0 +1,2 @@
+The symlinks to sample_assets here are so that, for example, the en-wikipedia/search.php
+page can work even though it's not running in a RACHEL environment

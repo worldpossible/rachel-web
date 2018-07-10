@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="four columns">
+        <div class="viewmod-logo" style="background-image: url(/mods/<% echo $moddir %>/<% echo $logofilename %>);"></div>
+    </div>
+    <div class="eight columns">
+        <h5><% echo $title %></h5>
+        <hr style="margin: 0;">
+        <table style="width: 100%; margin-bottom: 1rem;">
+        <tr>
+        <!--td><div class="<% echo $star_class %>" style="width: 12rem; padding-top: 2rem; margin: .25rem 0;"></td-->
+        <td><% echo $langname %></td>
+        <td><% echo $gsize %></td>
+        <% if $cc_link %>
+        <td><a href="<% echo $cc_link %>" title="<% echo $cc_license %>"><img src="<% echo $cc_png %>" alt="<% echo $cc_license %>"></td>
+        <% endif %>
+        </tr>
+        </table>
+        <% echo $description %>
+        <hr>
+        <a href="<% echo $source_url %>"><% echo $source_url %></a>
+    </div>
+</div>
+
+<h5 class="u-space-top">Download Options</h5>
+<hr>
+<% if $haszipfile %>
+    <a href="/zipped-modules/<% echo $moddir %>.zip">Zip File over the web</a><br>
+    <a href="ftp://dev.worldpossible.org/zipped-modules/<% echo $moddir %>.zip">Zip File over FTP</a>
+    <small>(host: dev.worldpossible.org user/pass: anonymous)</small><br>
+<% endif %>
+<script>
+    function showRsync() {
+        $("#rsync").toggle();
+        return false;
+    }
+</script>
+<style>
+    #rsync {
+        display: none;
+        background-color: #E1E1E1;
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+    #rsync input {
+        width: 99%;
+        font-weight: bold;
+    }
+</style>
+<a href="#" onclick="return showRsync();">Rsync</a>
+<div id="rsync">
+<input class="rsync" onclick="return this.select();" value="rsync -Pavz rsync://dev.worldpossible.org/rachelmods/<% echo $moddir %> ./">
+Copy & paste the above command to any Unix-based system to begin download. Rsync can pick up where it left off and only downloads changes.
+It's the most efficient way to stay up-to-date with OER2Go modules.
+</div>
+
+<div id="#sample" style="margin-bottom: 40px;">
+<h5 class="u-space-top">Content Preview</h5>
+<iframe width="100%" src="/cgi/sample_wrap.php?moddir=<% echo $moddir %>" onload="setIframeHeight(this);" style="border: 1px solid #E1E1E1; border-radius: 8px;"></iframe>
+<a href="/cgi/sample_wrap.php?moddir=<% echo $moddir %>" target="_blank">Open in a new window</a> &nearr;
+</div>

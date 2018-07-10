@@ -1,0 +1,51 @@
+<style>
+    table a { text-decoration: none; }
+    td, td:first-child, th, th:first-child { border: 1px solid #ccc; padding: 5px 10px;}
+    th { color: #999; font-weight: normal; font-size: 80%; }
+    .flag { text-align: center; }
+    .flag a, .flag a:visited { text-decoration: none; color: red; }
+    .is_hidden { background-color: #eee; }
+    .is_hidden td { opacity: 0.5; }
+</style>
+
+<h4>Module Overview</h4>
+<ul>
+<li>A red dot marks data that may need attention</li>
+<li>Hidden modules are grayed-out but accessible</li>
+</ul>
+
+<table>
+<% loop "row" %>
+
+<% if $new_lang %>
+    <tr style="background-color: #1EAEDB;"><th colspan="<% echo $colcount %>" style="color: #333; font-size: 2rem;"><b><% echo $new_lang %></b></th></tr>
+<% endif %>
+<% if $header %>
+    <tr><% loop "header" %><th><% echo $colname %></th><% endloop %></tr>
+<% endif %>
+
+<tr<% if $is_hidden %> class="is_hidden"<% endif %>>
+    <% loop "column" %>
+        <% if $link && $text %>
+            <td><a href="<% echo $link %>"><% echo $text %></a></td>
+        <% elsif !$is_ok %>
+            <td class="flag"><a href="<% echo $link %>">&#11044;</a></td>
+        <% else %>
+            <td></td>
+        <% endif %>
+    <% endloop %>
+</tr>
+<% endloop %>
+</table>
+
+<h4 class="u-space-top">Modules without a database entry</h4>
+<ul>
+<% loop "fsonly" %>
+    <li> <a href="/mods/<% echo $dir %>"><% echo $dir %></a></li>
+<% endloop %>
+</ul>
+
+<b>To fix, <a href="newmod.pl">add a new module</a>.</b>
+
+
+<div style="margin: 40px;"></div>

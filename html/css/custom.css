@@ -1,0 +1,186 @@
+
+/* Skeleton Overrides
+-------------------------------------------------- */
+
+html {
+    /* default is 15px */
+    -font-size: 66.6667%; /* 16px */
+    -font-size: 75%;      /* 18px */
+}
+
+/* why doesn't it line up by default? */
+input[type="submit"] {
+    position: relative;
+    top: -1px;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Skeleton Grid Additions
+-------------------------------------------------- */
+
+.offset-center-three.column,
+.offset-center-three.columns { margin-left: 39%; }
+.offset-center-five.column,
+.offset-center-five.columns { margin-left: 30.3333333333%; }
+.offset-center-seven.column,
+.offset-center-seven.columns { margin-left: 21.66666666667%; }
+.offset-center-nine.column,
+.offset-center-nine.columns { margin-left: 13%; }
+.offset-center-eleven.column,
+.offset-center-eleven.columns { margin-left: 4.3333333333%; }
+
+.ofboxes .columns {
+    background: #eee;
+    border-radius: 4px;
+    padding: 5px 10px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+/* Custom Parts
+-------------------------------------------------- */
+
+.title2 { font-size: 140%; font-weight: bold; color: #1EAEDB; }
+.lighter { color: #555; }
+
+.u-space-bottom { margin-bottom: 1.0rem; }
+.u-space-top { margin-top: 1.0rem; }
+.u-out { outline: 1px solid black; }
+.u-nowrap { white-space: nowrap; }
+
+.okbox, .okbox:hover {
+    background-color: #cfc;
+    color: #696;
+    border-color: #beb;
+    cursor: default;
+}
+.errbox, .errbox:hover {
+    background-color: #fcc;
+    color: #966;
+    border-color: #ebb;
+    cursor: default;
+}
+
+/* shouldn't css for stuff that's only on one page go on *that* page */
+.fullbar { /* front page */
+    background-image: url('/img/usb-sprout-small.jpg');
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    text-shadow: 2px 2px 5px #000;
+    padding: 3.0rem 0;
+    margin: 2.5rem 0;
+}
+.viewmod-logo {
+    width: 100%;
+    padding-top: 100%; /* width-relative height! */
+    border-radius: 8px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid #eee;
+    margin-bottom: 5px;
+    margin-right: 20px;
+    float: left;
+}
+
+/* sticky footer trick - part a */
+html { height: 100%; }
+body { min-height: 100%; position: relative; }
+.footer-space { height: 20rem; }
+
+.footer {
+    background-color: #151413;
+    background-image: url('/img/darth_stripe.png');
+    border-top: 2px solid #000;
+    color: #ccc;
+    padding: 7.0rem 0;
+    /* sticky footer trick - part b */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* On search results and category pages, we display
+   a sort of app thumbnail, which is styled here.
+   We do a fair amount of responsive work here to
+   keep the boxes the same height, keep all the
+   contents inside, and make the images a pleasing
+   size at all resolutions.
+*/
+.appbox {
+    padding-bottom: 2%;
+    text-align: center;
+    height: 100%;
+}
+.appbox .border {
+    padding: 1.0rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+.appbox .logo {
+    width: 100%;
+    padding-top: 100%; /* width-relative height! */
+    border-radius: 8px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid #eee;
+    margin-bottom: 5px;
+}
+.appbox:hover {
+    border-color: #0FA0CE;
+}
+.appbox .title {
+    font-size: 2.4rem; line-height: 1.35; letter-spacing: -.08rem;
+    height: 7.2rem;
+    vertical-align: middle;
+    overflow: hidden;
+}
+@media (min-width: 550px) {
+    .appbox {
+        float: left;
+        width: 30.6666666667%;
+        margin: 0 1.3333333333%;
+        box-sizing: border-box;
+    }
+    .appbox .title {
+        font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0;
+        height: 4.5rem;
+    }
+    /* this sizing allows us to have margins on both sides of each
+         floated appbox but still line up to the left and right sides */
+    .result-container {
+        width: 102.6666666667%;
+        margin-left: -1.3333333333%;
+    }
+}
+
+.star, .zero.star {
+    width: 100%;
+    padding-top: 17%; /* width-relative height! */
+    background-size: 200%; /* half full, half empty */
+    background-image: url('/img/star-rating-sprite.png');
+    background-repeat: no-repeat;
+    background-position: 100% 0;
+    margin-top: 5px;
+}
+.half.star { background-image: url('/img/star-rating-sprite-half.png'); }
+.one.star   { background-position: 80% 0; }
+.two.star   { background-position: 60% 0; }
+.three.star { background-position: 40% 0; }
+.four.star  { background-position: 20% 0; }
+.five.star  { background-position:  0  0; }
+
+
+/* this is for moving labels around on the editmod page */
+.dynlabel { text-align: left; }
+@media (min-width: 550px) {
+    .dynlabel { text-align: right; }
+}
+
+

@@ -1,0 +1,25 @@
+<% if $error %>
+    <h5 style="text-align: center;">The email or password was incorrect.</h5>
+<% endif %>
+
+<form method="post">
+
+<div class="row">
+    <div class="six columns offset-by-three">
+        <label for="email">Email</label>
+        <input name="email" type="text" value="<% echo $email %>" style="width: 100%;" autofocus="autofocus">
+    </div>
+</div>
+<div class="row">
+    <div class="six columns offset-by-three">
+        <label for="password">Password</label>
+        <input name="password" type="password" style="width: 100%;">
+    </div>
+</div>
+<div class="row">
+    <div class="six columns offset-by-three">
+        <input type="submit" class="button-primary" name="login" value="Log In">
+    </div>
+</div>
+
+</form>

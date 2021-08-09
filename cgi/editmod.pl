@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use O2G::Tools;
+use Archive::Zip;
 
 my ($r, $d, $t) = O2G::Tools->basics();
 
@@ -44,8 +45,34 @@ my %editable = map( { $_ => 1 } qw(
     prereq_id prereq_note
     logofilename rating
     age_range category
-    is_hidden
+    is_hidden version 
+    kiwix_url kiwix_date
 ));
+
+if ($r->param("zipmod")) {
+    
+    my $module = $d->select_single(qq(
+        SELECT * FROM modules WHERE module_id = ?
+    ), [ $module_id ]);
+    
+    my $moddir  = $module->{moddir};
+    my $modpath = "/var/modules/" . $moddir;
+    my $outPath = "/var/public_ftp/zipped-modules/" . $moddir . ".zip";
+
+    if(-e $outPath){
+        unlink($outPath);
+    } 
+
+    my $zip = Archive::Zip->new();
+    $zip->addDirectory( $modpath );
+    $zip->writeToFileNamed($outPath);
+}
+
+if ($r->param("delmod")) {
+    $d->delete("modules", 
+             { module_id => $r->param("module_id") });
+}
+
 
 if ($r->param("save")) {
     my $setclause;

@@ -25,7 +25,8 @@ my %editable = map( { $_ => 1 } qw(
     type cc_license
     prereq_id prereq_note
     logofilename rating
-    age_range category
+    age_range category is_hidden
+    version kiwix_url kiwix_date
 ));
 
 if ($r->param("save")) {
@@ -51,7 +52,7 @@ if ($r->param("save")) {
     my $moddir = O2G::Tools->filter_moddir($r->param("moddir"));
 
     # calculate sizes XXX should we do this in a batch script later?
-    $setclause->{ksize} = O2G::Tools->get_ksize( $moddir );
+    $setclause->{ksize}      = O2G::Tools->get_ksize( $moddir );
     $setclause->{file_count} = O2G::Tools->get_filecount( $moddir );
 
     my $module_id = $d->insert("modules", $setclause );

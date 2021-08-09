@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /wp-login.php
+Disallow: /xmlrpc.php
+Disallow: /cgi-bin/ 
+Disallow: /mods/
+Disallow: /zipped-modules/
